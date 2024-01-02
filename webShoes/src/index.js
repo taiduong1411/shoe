@@ -9,7 +9,7 @@ const cookieParser = require("cookie-parser");
 dotenv.config();
 const app = express();
 app.set("view engine", "ejs");
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 9000;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(cookieParser());

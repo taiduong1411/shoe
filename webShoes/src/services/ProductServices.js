@@ -100,21 +100,23 @@ const deleteManyProduct = (ids) => {
     }
   });
 };
-const getAllProduct = (limit, page, sort, filter) => {
+const getAllProduct = async (limit, page, sort, filter) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const totalProduct = await Product.countDocuments();
+      let totalProduct = await Product.countDocuments();
       let allProduct = [];
       if (filter) {
         const label = filter[0];
 
         totalProduct = (await Product.find({ [label]: { $regex: filter[1] } }))
           .length;
+
         const allObjectfilter = await Product.find({
           [label]: { $regex: filter[1] },
         })
           .limit(limit)
           .skip(page * limit);
+
         resolve({
           status: "OK",
           message: "SUCCESS",
@@ -211,4 +213,5 @@ module.exports = {
   deleteManyProduct,
   getAllProduct,
   getAllType,
+  getNewestProduct,
 };
