@@ -1,8 +1,8 @@
-const NewsServices = require("../services/NewsServices");
+const ServicesServices = require("../services/ServicesServices");
 
-const getAllNews = async (req, res) => {
+const getAllServices = async (req, res) => {
   try {
-    const response = await NewsServices.getAllNews();
+    const response = await ServicesServices.getAllServices();
     return res.status(200).json(response);
   } catch (e) {
     return res.status(400).json({
@@ -13,7 +13,7 @@ const getAllNews = async (req, res) => {
 
 const createOne = async (req, res) => {
   try {
-    const response = await NewsServices.createOne(req.body);
+    const response = await ServicesServices.createOne(req.body);
     return res.status(200).json(response);
   } catch (error) {
     return res.status(400).json({
@@ -23,6 +23,6 @@ const createOne = async (req, res) => {
 };
 
 module.exports = {
-  getAllNews,
+  getAllServices,
   createOne,
 };

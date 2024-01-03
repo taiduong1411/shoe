@@ -3,11 +3,9 @@ import { axiosJWT } from "./UserServices";
 
 export const getAllProduct = async (search, limit, searchBy, currentPage) => {
   const res = await axios.get(
-    `${
-      process.env.REACT_APP_API_URL
-    }/product/get-all?filter=${searchBy}&filter=${
-      search ?? ""
-    }&limit=${limit}&page=${currentPage}`
+    `${process.env.REACT_APP_API_URL}/product/get-all?filter=${
+      searchBy ?? "name"
+    }&filter=${search ?? ""}&limit=${limit}&page=${currentPage}`
   );
   return res.data;
 };

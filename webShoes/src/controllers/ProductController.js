@@ -1,6 +1,4 @@
-// const { query } = require("express");
 const ProductServices = require("../services/ProductServices");
-
 
 const createProduct = async (req, res) => {
   try {

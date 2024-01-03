@@ -77,7 +77,7 @@ const HeaderComponent = ({ isHiddenMenu = false }) => {
     },
     {
       name: "DỊCH VỤ",
-      path: "",
+      path: "/services",
     },
     {
       name: "TIN TỨC",
@@ -85,7 +85,7 @@ const HeaderComponent = ({ isHiddenMenu = false }) => {
     },
     {
       name: "LIÊN HỆ",
-      path: "",
+      path: "/contact",
     },
   ];
 
