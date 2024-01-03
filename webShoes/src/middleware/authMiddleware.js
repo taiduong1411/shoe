@@ -8,7 +8,7 @@ const authMiddleware = (req, res, next) => {
         if (err) {
             return res.status(404).json({
                 message: 'The authemtication',
-                status: 'ERROR'
+                status: 'ERR'
             })
         }
         if (user?.isAdmin) {
@@ -16,7 +16,7 @@ const authMiddleware = (req, res, next) => {
         } else {
             return res.status(404).json({
                 message: 'The authemtication',
-                status: 'ERROR'
+                status: 'ERR'
             })
         }
     });
@@ -27,8 +27,8 @@ const authUserMiddleware = (req, res, next) => {
     jwt.verify(token, process.env.ACCESS_TOKEN, function (err, user) {
         if (err) {
             return res.status(404).json({
-                message: 'The authemtication3',
-                status: 'ERROR'
+                message: 'The authemtication33',
+                status: 'ERR'
             })
         }
         if (user?.isAdmin || user?.id === userId) {
@@ -36,7 +36,7 @@ const authUserMiddleware = (req, res, next) => {
         } else {
             return res.status(404).json({
                 message: 'The authemtication',
-                status: 'ERROR'
+                status: 'ERR'
             })
         }
     });

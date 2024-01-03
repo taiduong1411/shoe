@@ -7,8 +7,8 @@ import { useLocation } from "react-router-dom";
 const TypeProductPage = () => {
     const onChange = () => { }
     return (
-        <div style={{ padding: '0 120px', background: '#efefef' }}>
-            <Row style={{ flexWrap: 'nowrap', paddingTop: '10px' }}>
+        <div style={{ padding: '0 120px', background: '#efefef'}}>
+            <Row style={{ flexWrap: 'nowrap', paddingTop: '10px'}}>
                 <WrapperNavbar span={4}>
                     <NavbarComponents />
                 </WrapperNavbar>

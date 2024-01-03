@@ -9,6 +9,5 @@ export const fetchAllNews = () => async (dispatch) => {
 
     dispatch(updateNews(response.data));
   } catch (error) {
-    console.log(error);
   }
 };

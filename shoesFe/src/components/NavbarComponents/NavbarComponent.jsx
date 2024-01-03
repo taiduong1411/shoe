@@ -80,7 +80,7 @@ const NavbarComponents = () => {
     }
   };
   return (
-    <div>
+    <div >
       <WrapperLabelText>DANH MỤC</WrapperLabelText>
       <WrapperContent>
         {renderContent("text", [
@@ -121,14 +121,14 @@ const NavbarComponents = () => {
           { value: "z", label: "45" },
         ])}
       </WrapperContent>
-      <WrapperContent>{renderContent("start", [3, 4, 5])}</WrapperContent>
+      {/* <WrapperContent>{renderContent("start", [3, 4, 5])}</WrapperContent>
       <WrapperContent>
         {renderContent("price", [
           "Dưới 500.000đ",
           "Trên 500.000đ",
           "Từ 1.000.000đ đến 5.000.000đ",
         ])}
-      </WrapperContent>
+      </WrapperContent> */}
     </div>
   );
 };

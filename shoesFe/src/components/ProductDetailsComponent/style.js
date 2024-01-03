@@ -106,3 +106,10 @@ color: rgb(51,51,51);
 font-weight: 600;
 font-size: 26px;
 `
+export const WrapperContainerName = styled.h3`
+margin-bottom: 10px;
+margin-top: 20px;
+color: rgb(51,51,51);
+font-weight: 600;
+font-size: 20px;
+`

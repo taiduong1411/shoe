@@ -15,7 +15,6 @@ const DetailsOrderPage = () => {
     const location = useLocation();
     const { state } = location;
     const { id } = params
-    console.log('params', params)
 
     const fetchDetailsOrder = async () => {
         const res = await OrderServices.getDetailsOrder(

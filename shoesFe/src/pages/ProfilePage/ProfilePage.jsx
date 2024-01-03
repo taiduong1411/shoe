@@ -85,8 +85,8 @@ const ProfilePage = () => {
                                 BorderRadius: '4px',
                                 padding: '2px 6px 6px',
                             }}
-                            textButton={'Cập nhật'}
-                            styleTextButton={{ color: 'rgb(26, 148, 255)', fontSize: '15px', fontWeight: '700' }}
+                            textbutton={'Cập nhật'}
+                            styletextbutton={{ color: 'rgb(26, 148, 255)', fontSize: '15px', fontWeight: '700' }}
                         >
                         </ButtonComponent>
                     </WrapperInput>
@@ -103,8 +103,8 @@ const ProfilePage = () => {
                                 BorderRadius: '4px',
                                 padding: '2px 6px 6px',
                             }}
-                            textButton={'Cập nhật'}
-                            styleTextButton={{ color: 'rgb(26, 148, 255)', fontSize: '15px', fontWeight: '700' }}
+                            textbutton={'Cập nhật'}
+                            styletextbutton={{ color: 'rgb(26, 148, 255)', fontSize: '15px', fontWeight: '700' }}
                         >
                         </ButtonComponent>
                     </WrapperInput>
@@ -121,8 +121,8 @@ const ProfilePage = () => {
                                 BorderRadius: '4px',
                                 padding: '2px 6px 6px',
                             }}
-                            textButton={'Cập nhật'}
-                            styleTextButton={{ color: 'rgb(26, 148, 255)', fontSize: '15px', fontWeight: '700' }}
+                            textbutton={'Cập nhật'}
+                            styletextbutton={{ color: 'rgb(26, 148, 255)', fontSize: '15px', fontWeight: '700' }}
                         >
                         </ButtonComponent>
                     </WrapperInput>
@@ -139,8 +139,8 @@ const ProfilePage = () => {
                                 BorderRadius: '4px',
                                 padding: '2px 6px 6px',
                             }}
-                            textButton={'Cập nhật'}
-                            styleTextButton={{ color: 'rgb(26, 148, 255)', fontSize: '15px', fontWeight: '700' }}
+                            textbutton={'Cập nhật'}
+                            styletextbutton={{ color: 'rgb(26, 148, 255)', fontSize: '15px', fontWeight: '700' }}
                         >
                         </ButtonComponent>
                     </WrapperInput>
@@ -157,8 +157,8 @@ const ProfilePage = () => {
                                 BorderRadius: '4px',
                                 padding: '2px 6px 6px',
                             }}
-                            textButton={'Cập nhật'}
-                            styleTextButton={{ color: 'rgb(26, 148, 255)', fontSize: '15px', fontWeight: '700' }}
+                            textbutton={'Cập nhật'}
+                            styletextbutton={{ color: 'rgb(26, 148, 255)', fontSize: '15px', fontWeight: '700' }}
                         >
                         </ButtonComponent>
                     </WrapperInput> */}

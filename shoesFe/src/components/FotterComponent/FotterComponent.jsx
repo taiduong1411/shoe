@@ -2,7 +2,20 @@ import { Col, Row } from "antd";
 import React from "react";
 import { WrapperFooterButton, WrapperFooterabout, WrapperFotter, WrapperFotterForm, WrapperFotterInput, WrapperFotterInputGroup, WrapperFotterul } from "./style";
 import Link from "antd/es/typography/Link";
+import { Navigate } from "react-router-dom";
 const FotterComponent = () => {
+
+
+
+//    const navigate = Navigate();
+
+
+//  const handleAboutUs = () => {
+//     navigate('/about-us')
+//  }
+
+
+
     return (
         <WrapperFotter>
             <div>
@@ -25,26 +38,26 @@ const FotterComponent = () => {
                         </WrapperFooterabout>
                     </Col>
                     <Col span={4}>
-                        <WrapperFooterabout>
+                        <WrapperFooterabout >
                             <h3>GIỚI THIỆU</h3>
                             <WrapperFotterul>
                                 <li>
-                                    <Link to="" style={{ color: "#f1f1f1", fontSize: '16px' }}>Về chúng tôi</Link>
+                                    <Link style={{ color: "#f1f1f1", fontSize: '16px' }} >Về chúng tôi</Link>
                                 </li>
                                 <li>
-                                    <Link to="" style={{ color: "#f1f1f1", fontSize: '16px' }}>Hướng dẫn mua hàng</Link>
+                                    <Link  style={{ color: "#f1f1f1", fontSize: '16px' }}>Hướng dẫn mua hàng</Link>
                                 </li>
                                 <li>
-                                    <Link to="" style={{ color: "#f1f1f1", fontSize: '16px' }}>Chính sách giao hàng</Link>
+                                    <Link  style={{ color: "#f1f1f1", fontSize: '16px' }}>Chính sách giao hàng</Link>
                                 </li>
                                 <li>
-                                    <Link to="" style={{ color: "#f1f1f1", fontSize: '16px' }}>Chính sách đổi trả</Link>
+                                    <Link  style={{ color: "#f1f1f1", fontSize: '16px' }}>Chính sách đổi trả</Link>
                                 </li>
                                 <li>
-                                    <Link to="" style={{ color: "#f1f1f1", fontSize: '16px' }}>Chính sách bảo hành</Link>
+                                    <Link  style={{ color: "#f1f1f1", fontSize: '16px' }}>Chính sách bảo hành</Link>
                                 </li>
                                 <li>
-                                    <Link to="" style={{ color: "#f1f1f1", fontSize: '16px' }}>Chính sách bảo mật</Link>
+                                    <Link style={{ color: "#f1f1f1", fontSize: '16px' }}>Chính sách bảo mật</Link>
 
                                 </li>
                             </WrapperFotterul>
@@ -55,25 +68,25 @@ const FotterComponent = () => {
                             <h3>THƯƠNG HIỆU</h3>
                             <WrapperFotterul>
                                 <li>
-                                    <Link to="" style={{ color: "#f1f1f1", fontSize: '16px' }}>Giày ADIDAS</Link>
+                                    <Link  style={{ color: "#f1f1f1", fontSize: '16px' }}>Giày ADIDAS</Link>
                                 </li>
                                 <li>
-                                    <Link to="" style={{ color: "#f1f1f1", fontSize: '16px' }}>Giày MLB</Link>
+                                    <Link  style={{ color: "#f1f1f1", fontSize: '16px' }}>Giày MLB</Link>
                                 </li>
                                 <li>
-                                    <Link to="" style={{ color: "#f1f1f1", fontSize: '16px' }}>Giày NIKE</Link>
+                                    <Link  style={{ color: "#f1f1f1", fontSize: '16px' }}>Giày NIKE</Link>
                                 </li>
                                 <li>
-                                    <Link to="" style={{ color: "#f1f1f1", fontSize: '16px' }}>Giày ASICS</Link>
+                                    <Link  style={{ color: "#f1f1f1", fontSize: '16px' }}>Giày ASICS</Link>
                                 </li>
                                 <li>
-                                    <Link to="" style={{ color: "#f1f1f1", fontSize: '16px' }}>Giày CONVERSE</Link>
+                                    <Link  style={{ color: "#f1f1f1", fontSize: '16px' }}>Giày CONVERSE</Link>
                                 </li>
                                 <li>
-                                    <Link to="" style={{ color: "#f1f1f1", fontSize: '16px' }}>Giày PUMA</Link>
+                                    <Link  style={{ color: "#f1f1f1", fontSize: '16px' }}>Giày PUMA</Link>
                                 </li>
                                 <li>
-                                    <Link to="" style={{ color: "#f1f1f1", fontSize: '16px' }}>Giày VANS</Link>
+                                    <Link  style={{ color: "#f1f1f1", fontSize: '16px' }}>Giày VANS</Link>
                                 </li>
                             </WrapperFotterul>
                         </WrapperFooterabout>

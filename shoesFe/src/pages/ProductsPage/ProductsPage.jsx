@@ -23,7 +23,7 @@ const ProductsPage = () => {
 
   return (
     <div style={{ padding: "0 120px", background: "#efefef" }}>
-      <Row style={{ flexWrap: "nowrap", paddingTop: "10px" }}>
+      <Row style={{ flexWrap: "nowrap", paddingTop: "10px",marginBottom:'30px'}}>
         <WrapperNavbar span={4}>
           <NavbarComponents />
         </WrapperNavbar>

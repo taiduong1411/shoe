@@ -43,19 +43,16 @@ const loginUser = (userLogin) => {
             const checkUser = await User.findOne({
                 email: email
             })
-
-
-
             if (checkUser === null) {
                 resolve({
-                    status: 'Error',
-                    message: 'the ser is not defindued'
+                    status: 'ERR',
+                    message: 'the User is not defindued'
                 })
             }
             const comparePassword = bcrypt.compareSync(password, checkUser.password)
             if (!comparePassword) {
                 resolve({
-                    status: 'Error',
+                    status: 'ERR',
                     message: 'the password  or user is incorrect'
                 })
             }
@@ -89,7 +86,7 @@ const updateUser = (id, data) => {
 
             if (checkUser === null) {
                 resolve({
-                    status: 'Error',
+                    status: 'ERR',
                     message: 'the user is not definded'
                 })
             }
@@ -115,7 +112,7 @@ const deleteUser = (id) => {
 
             if (checkUser === null) {
                 resolve({
-                    status: 'OK',
+                    status: 'ERR',
                     message: 'the user is not definded'
                 })
             }
@@ -136,7 +133,7 @@ const deleteManyUser = (ids) => {
         try {
             await User.deleteMany({ id: ids })
             resolve({
-                status: 'OK',
+                status: 'ERR',
                 message: 'Delete user success',
             })
 
@@ -145,7 +142,7 @@ const deleteManyUser = (ids) => {
         }
     })
 }
-const getAllUser = (id) => {
+const getAllUser = () => {
 
     return new Promise(async (resolve, reject) => {
         try {
@@ -170,7 +167,7 @@ const getDetailsUser = (id) => {
             })
             if (user === null) {
                 resolve({
-                    status: 'OK',
+                    status: 'ERR',
                     message: 'the user is not definded'
                 })
             }

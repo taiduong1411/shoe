@@ -258,7 +258,7 @@ const OderPage = () => {
                                                 </button>
                                                 <WrapperInputNumber defaultValue={order?.amount} value={order?.amount} size="small" min={1} max={order?.countInStock} />
                                                 <button style={{ border: 'none', background: 'transparent', cursor: 'pointer' }} onClick={() => handleChangeCount('increase', order?.product,
-                                                    order?.amount === order?.countInStock)}>
+                                                    order?.amount === order?.countInStock,order?.amount === 1)}>
                                                     <PlusOutlined style={{ color: '#000', fontSize: '10px' }} />
                                                 </button>
                                             </WrapperCountOrder>
@@ -318,8 +318,8 @@ const OderPage = () => {
                                 borderRadius: '4px'
                             }}
 
-                            textButton={'Mua hàng'}
-                            styleTextButton={{ color: '#fff', fontSize: '15px', fontWeight: '700' }}
+                            textbutton={'Mua hàng'}
+                            styletextbutton={{ color: '#fff', fontSize: '15px', fontWeight: '700' }}
                         >
                         </ButtonComponent>
                     </WrapperRight>

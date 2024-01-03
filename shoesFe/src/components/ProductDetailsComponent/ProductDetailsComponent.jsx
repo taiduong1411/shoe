@@ -1,11 +1,10 @@
 import { Col, Divider, Image, Row } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import imageProduct from "../../assets/Nam/giay-adidas-adizero-sl-nam-den-den-01.jpg"
-import imageSmall1 from "../../assets/Nam/giay-adidas-adizero-sl-nam-den-den-02.jpg"
 import imageSmall2 from "../../assets/Nam/giay-adidas-adizero-sl-nam-den-den-03.jpg"
 import imageSmall3 from "../../assets/Nam/giay-adidas-adizero-sl-nam-den-den-04.jpg"
 import imageSmall4 from "../../assets/Nam/giay-adidas-adizero-sl-nam-den-den-05.jpg"
-import { ProductSize, WrapperAddressProduct, WrapperContainer, WrapperContainerTitle, WrapperInputNumber, WrapperPriceSale, WrapperPriceTextProduct, WrapperQualityProduct, WrapperSingleProduct, WrapperStyleColSmall, WrapperStyleImageSmall, WrapperStyleNameProduct, WrapperStylePriceProduct, WrapperStyleTextBuy } from "./style";
+import { ProductSize, WrapperAddressProduct, WrapperContainer, WrapperContainerName, WrapperContainerTitle, WrapperInputNumber, WrapperPriceSale, WrapperPriceTextProduct, WrapperQualityProduct, WrapperSingleProduct, WrapperStyleColSmall, WrapperStyleImageSmall, WrapperStyleNameProduct, WrapperStylePriceProduct, WrapperStyleTextBuy } from "./style";
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import ButtonComponent from "../ButtonComponent/ButtonComponent";
 import * as ProductServices from "../../services/ProductServices";
@@ -13,17 +12,22 @@ import { useQuery } from "@tanstack/react-query";
 import LoadingComponent from "../LoadingComponent/LoadingComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { addOrderProduct } from "../../redux/slice/OderSlice";
+import { addOrderProduct,resetOrder } from "../../redux/slice/OderSlice";
 import { convertPrice } from "../../utils";
+import * as message from "../../components/Message/Message"
 
 
 
 const ProductDetailsComponent = ({ idProduct }) => {
     const [numProduct, setNumProduct] = useState(1)
     const user = useSelector((state) => state.user)
+    const order = useSelector((state) => state.order)
+    const [errorLimitOrder,setErrorLimitOrder]= useState(false)
     const Navigate = useNavigate()
     const location = useLocation()
     const dispatch = useDispatch()
+
+
     const onChange = (value) => {
         setNumProduct(Number(value))
     }
@@ -36,14 +40,34 @@ const ProductDetailsComponent = ({ idProduct }) => {
         }
     }
 
+    useEffect(() =>{
+        const orderRedux = order?.orderItem?.find((item) => item.product === productDetails?._id)
+        if((orderRedux?.amount + numProduct) <= orderRedux?.countInStock || (!orderRedux && productDetails?.countInStock > 0)){
+            setErrorLimitOrder(false)
+        } else if(productDetails?.countInStock === 0) {
+            setErrorLimitOrder(true)
+        }
+    },[numProduct])
+    
+    useEffect(() =>{
+        if(order.isSuccessOrder){
+            message.success('Đã thêm vào giỏ hàng')
+        } 
+        return () =>{
+            dispatch(resetOrder())
+        }
+    },[order.isSuccessOrder])
 
 
-    const handleChangeCount = (type) => {
+    const handleChangeCount = (type,limited) => {
         if (type === 'increase') {
+            if(!limited){
             setNumProduct(numProduct + 1)
+            }
         } else {
+            if(!limited){
             setNumProduct(numProduct - 1)
-
+            }
         }
     }
 
@@ -53,6 +77,8 @@ const ProductDetailsComponent = ({ idProduct }) => {
         if (!user?.id) {
             Navigate('/sign-in', { state: location?.pathname })
         } else {
+            const orderRedux = order?.orderItem?.find((item) => item.product === productDetails?._id)
+            if((orderRedux?.amount + numProduct) <= orderRedux?.countInStock || (!orderRedux && productDetails?.countInStock > 0)){
             dispatch(addOrderProduct({
                 orderItem: {
                     name: productDetails?.name,
@@ -63,6 +89,9 @@ const ProductDetailsComponent = ({ idProduct }) => {
                     countInStock: productDetails?.countInStock
                 }
             }))
+        } else {
+            setErrorLimitOrder(true)
+        }
         }
     }
     return (
@@ -95,7 +124,7 @@ const ProductDetailsComponent = ({ idProduct }) => {
                         </Col>
                         <Col span={14} style={{ paddingLeft: '10px' }}>
                             <WrapperStyleNameProduct>{productDetails?.name}</WrapperStyleNameProduct>
-                            <div>
+                            {/* <div>
                                 <i style={{ fontSize: '15px', color: 'yellow' }} className="fa-solid fa-star"></i>
                                 <i style={{ fontSize: '15px', color: 'yellow' }} className="fa-solid fa-star"></i>
                                 <i style={{ fontSize: '15px', color: 'yellow' }} className="fa-solid fa-star"></i>
@@ -104,18 +133,19 @@ const ProductDetailsComponent = ({ idProduct }) => {
                                 <WrapperStyleTextBuy>
                                     | Đã bán  99+
                                 </WrapperStyleTextBuy>
-                            </div>
+                            </div> */}
                             <div>
                                 <WrapperStylePriceProduct>
                                     <WrapperPriceTextProduct>{convertPrice(productDetails?.price)}</WrapperPriceTextProduct>
                                     {/* <WrapperPriceSale>1.2000.000đ</WrapperPriceSale> */}
 
                                 </WrapperStylePriceProduct>
-                                <WrapperAddressProduct>
+                                {/* <WrapperAddressProduct>
                                     <span>Giao đến </span>
                                     <span className="address">{user?.address}</span>
                                     <span className="change-address">Đổi địa chỉ</span>
-                                </WrapperAddressProduct>
+                                </WrapperAddressProduct> */}
+                                
                             </div>
                             <div>
                             </div>
@@ -150,11 +180,13 @@ const ProductDetailsComponent = ({ idProduct }) => {
                             <div style={{ margin: '10px 0 20px', padding: '10px 0', borderTop: '1px solid #e5e5e5', borderBottom: '1px solid #e5e5e5' }}>
                                 <div style={{ marginBottom: '10px' }}>Số Lượng </div>
                                 <WrapperQualityProduct>
-                                    <button style={{ border: 'none', background: 'transparent', cursor: 'pointer' }} onClick={() => handleChangeCount('decrease')}>
+                                    <button style={{ border: 'none', background: 'transparent', cursor: 'pointer' }} onClick={() => 
+                                        handleChangeCount('decrease',numProduct === 1)}>
                                         <MinusOutlined style={{ color: '#000', fontSize: '20px' }} />
                                     </button>
-                                    <WrapperInputNumber onChange={onChange} defaultValue={1} value={numProduct} size='small' />
-                                    <button style={{ border: 'none', background: 'transparent', cursor: 'pointer' }} onClick={() => handleChangeCount('increase')}>
+                                    <WrapperInputNumber onChange={onChange} defaultValue={1} max={productDetails?.countInStock} min={1} value={numProduct} size='small' />
+                                    <button style={{ border: 'none', background: 'transparent', cursor: 'pointer' }} onClick={() => 
+                                        handleChangeCount('increase',numProduct === productDetails?.countInStock)}>
                                         <PlusOutlined style={{ color: '#000', fontSize: '20px' }} />
                                     </button>
 
@@ -193,7 +225,8 @@ const ProductDetailsComponent = ({ idProduct }) => {
                                     </strong>
                                 </div>
                             </WrapperSingleProduct>
-                            <div>
+                            <div style={{display:'flex',gap:'12px'}}>
+                                <div>
                                 <ButtonComponent
                                     size={40}
                                     styleButton={{
@@ -205,10 +238,12 @@ const ProductDetailsComponent = ({ idProduct }) => {
                                         marginRight: '10px'
                                     }}
                                     onClick={handleAddOrderProduct}
-                                    textButton={'MUA NGAY'}
-                                    styleTextButton={{ color: '#fff', fontSize: '15px', fontWeight: '700' }}
+                                    textbutton={'MUA NGAY'}
+                                    styletextbutton={{ color: '#fff', fontSize: '15px', fontWeight: '700' }}
                                 >
                                 </ButtonComponent>
+                                {errorLimitOrder && <div style={{color:'red'}}>Sản phẩm đã hết hàng</div>}
+                             </div>
                                 <ButtonComponent
                                     size={40}
                                     styleButton={{
@@ -218,8 +253,8 @@ const ProductDetailsComponent = ({ idProduct }) => {
                                         border: '1px solid ',
                                         BorderRadius: '4px'
                                     }}
-                                    textButton={'THÊM VÀO GIỎ HÀNG'}
-                                    styleTextButton={{ color: '#fff', fontSize: '15px' }}
+                                    textbutton={'THÊM VÀO GIỎ HÀNG'}
+                                    styletextbutton={{ color: '#fff', fontSize: '15px' }}
                                 >
                                 </ButtonComponent>
                             </div>
@@ -232,22 +267,15 @@ const ProductDetailsComponent = ({ idProduct }) => {
                             <WrapperContainerTitle>MÔ TẢ SẢN PHẨM</WrapperContainerTitle>
                         </div>
                         <div>
-                            <h4>GIÀY ADIDAS ADIZERO SL 2023 NAM-ĐEN</h4>
+                        <WrapperContainerName>{productDetails?.name}</WrapperContainerName>
                             <span>
-                                GIÀY ADIDAS ADIZERO SL 2023 NAM-ĐEN là một sản phẩm giày của nhãn hiệu MLB. Đây là một đôi giày Unisex, có thể phù hợp với mọi giới tính và lứa tuổi. Dù bạn là nam hay nữ, ở lứa tuổi nào đi chăng nữa, bạn đều có thể tìm thấy một bộ trang phục của mình có thể kết hợp một cách hoàn hảo với đôi giày này. Nếu bạn là một người ưa thích sự giản đơn, basic, nhưng lại thích các kiểu dáng thiên hướng thể thao khỏe khắn, đôi giày MLB LA Dodgers Big Ball Chunky A 32SHC1011-07W chắc chắn sẽ là lựa chọn phù hợp.
+                            {productDetails?.name} là một sản phẩm giày của nhãn hiệu MLB. Đây là một đôi giày Unisex, có thể phù hợp với mọi giới tính và lứa tuổi. Dù bạn là nam hay nữ, ở lứa tuổi nào đi chăng nữa, bạn đều có thể tìm thấy một bộ trang phục của mình có thể kết hợp một cách hoàn hảo với đôi giày này. Nếu bạn là một người ưa thích sự giản đơn, basic, nhưng lại thích các kiểu dáng thiên hướng thể thao khỏe khắn, đôi giày MLB LA Dodgers Big Ball Chunky A 32SHC1011-07W chắc chắn sẽ là lựa chọn phù hợp.
                             </span>
-                            <p style={{ textAlign: 'center' }}>
-                                <img style={{ width: '600px', height: 'auto' }} src={imageSmall1} alt="logo" />
-
-                            </p>
                             <br />
                             <p >
                                 Thiết kế giày với độ ôm vừa phải mang lại cảm giác nâng đỡ rất linh hoạt, lớp lót êm ái phù hợp mang hàng ngày hay mọi hoạt động thể thao. Phần đế giày được làm bằng cao su cao cấp áp dụng theo công nghệ cao với độ ma sát cao hạn chế trơn trượt, cùng độ nâng phù hợp giúp đôi chân vững vàng hơn khi di chuyển và hoạt động.
                             </p>
                             <br />
-                            <p style={{ textAlign: 'center' }}>
-                                <img style={{ width: '600px', height: 'auto' }} src={imageSmall2} alt="logo" />
-                            </p>
                             <br />
                             <span>
                                 Giày đi cực kỳ thoải mái, êm chân, màu sắc đơn giản dễ dàng kết hợp với nhiều trang phục khác nhau và sử dụng trong nhiều hoàn cảnh khác nhau như: đi học, đi chơi, dạo phố, du lịch...

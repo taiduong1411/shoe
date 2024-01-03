@@ -112,7 +112,7 @@ const HomePage = () => {
             }}
           >
             <WrapperButtonHover
-              textButton="XEM THÊM"
+              textbutton="XEM THÊM"
               type="outline"
               styleButton={{
                 border: "1px solid rgb(11,116,229)",
@@ -129,7 +129,7 @@ const HomePage = () => {
                 products?.total === products?.data?.length ||
                 products.totalPage === 1
               }
-              styleTextButton={{
+              styletextbutton={{
                 fontWeight: "500",
                 color: products?.total === products?.data?.length && "#fff",
               }}
@@ -142,10 +142,10 @@ const HomePage = () => {
           </div>
           <SliderCardComponent />
           {/* <div style={{ width: "100%", display: "flex", justifyContent: 'center', marginTop: "10px" }}>
-                        <WrapperButtonHover textButton="XEM THÊM" type="outline" styleButton={{
+                        <WrapperButtonHover textbutton="XEM THÊM" type="outline" styleButton={{
                             border: "1px solid rgb(11,116,229)", color: "rgb(11,116,229)",
                             width: "240px", height: "38px", borderRadius: '5px'
-                        }} styleTextButton={{ fontWeight: '500' }} />
+                        }} styletextbutton={{ fontWeight: '500' }} />
                     </div> */}
           <div style={{ textAlign: "center", marginTop: "25px" }}>
             <TitleTextNew>THƯƠNG HIỆU</TitleTextNew>

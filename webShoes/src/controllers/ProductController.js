@@ -1,5 +1,7 @@
-const { query } = require("express");
+// const { query } = require("express");
 const ProductServices = require("../services/ProductServices");
+
+
 const createProduct = async (req, res) => {
   try {
     const { name, image, type, price, countInStock, rating, description } =

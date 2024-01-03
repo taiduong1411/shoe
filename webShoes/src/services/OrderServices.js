@@ -1,8 +1,9 @@
 const Order = require("../models/OrderProduct")
 const Product = require("../models/ProductModel")
+const EmailServices = require("../services/EmailServices")
 const createOrder = (newOrder) => {
     return new Promise(async (resolve, reject) => {
-        const { orderItems, paymentMethod, itemsPrice, shippingPrice, totalPrice, fullName, address, city, phone, user, isPaid, paidAt } = newOrder
+        const { orderItems, paymentMethod, itemsPrice, shippingPrice, totalPrice, fullName, address, city, phone, user, isPaid, paidAt, email } = newOrder
         try {
             const Promises = orderItems.map(async (order) => {
                 const productData = await Product.findOneAndUpdate(
@@ -19,31 +20,11 @@ const createOrder = (newOrder) => {
                     { new: true }
                 )
                 if (productData) {
-                    const createdOrder = await Order.create({
-                        orderItems,
-                        shippingAddress: {
-                            fullName,
-                            address,
-                            city,
-                            phone
-                        },
-                        paymentMethod,
-                        itemsPrice,
-                        shippingPrice,
-                        totalPrice,
-                        user: user,
-                        isPaid,
-                        paidAt
-                    })
-
-                    if (createdOrder) {
-                        return {
-                            status: 'OK',
-                            message: 'SUCCESS'
-                        }
-                    }
-
-                } else {
+                  return {
+                    status:'OK',
+                    message:'SUCCESS'
+                  }
+                }else {
                     return {
                         status: 'ERR',
                         message: 'ERR',
@@ -54,15 +35,40 @@ const createOrder = (newOrder) => {
             const results = await Promise.all(Promises)
             const newData = results && results.filter((item) => item.id)
             if (newData.length) {
+                const arrId = []
+                newData.forEach((item) =>{
+                    arrId.push(item.id)
+                })
                 resolve({
                     status: 'ERR',
-                    message: `san pham voi id${newData.join(',')} khong du hang`
+                    message: `san pham voi id: ${arrId.join(',')} khong du hang`
                 })
-            }
-            resolve({
-                status: 'OK',
-                message: 'SUCCESS'
-            })
+            } else {
+                const createdOrder = await Order.create({
+                    orderItems,
+                    shippingAddress: {
+                        fullName,
+                        address,
+                        city,
+                        phone
+                    },
+                    paymentMethod,
+                    itemsPrice,
+                    shippingPrice,
+                    totalPrice,
+                    user: user,
+                    isPaid,
+                    paidAt
+                })
+
+                if (createdOrder) {
+                    await EmailServices.sendEmailCreateOrder(email, orderItems)
+                    resolve ({
+                        status: 'OK',
+                        message: 'SUCCESS'
+                    })
+                }
+            } 
         } catch (e) {
             reject(e)
         }
@@ -141,7 +147,6 @@ const cancelOrderDetails = (id, data) => {
                     },
                     { new: true }
                 )
-                console.log('productData', productData)
                 if (productData) {
                     order = await Order.findOneAndDelete(id)
                     if (order === null) {
@@ -159,7 +164,6 @@ const cancelOrderDetails = (id, data) => {
                 }
             })
             const results = await Promise.all(Promises)
-            console.log('results', results)
             const newData = results && results.filter((item) => item)
             if (newData.length) {
                 resolve({

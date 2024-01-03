@@ -27,7 +27,7 @@ export const fetchAllProducts =
       dispatch(updateTotalProducts(response.total));
       dispatch(updateTotalPage(response.totalPage));
     } catch (error) {
-      console.log(error);
+
     }
   };
 
@@ -39,6 +39,5 @@ export const fetchNewestProducts = () => async (dispatch) => {
 
     dispatch(updateNewestProducts(response.data));
   } catch (error) {
-    console.log(error);
   }
 };

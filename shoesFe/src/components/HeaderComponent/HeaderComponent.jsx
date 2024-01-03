@@ -236,7 +236,7 @@ const HeaderComponent = ({ isHiddenMenu = false }) => {
           <Col span={8}>
             <ButtonInputSearch
               size="large"
-              textButton="Tìm Kiếm"
+              textbutton="Tìm Kiếm"
               placeholder="Nhập tên sản phẩm"
               onChange={onSearch}
             />

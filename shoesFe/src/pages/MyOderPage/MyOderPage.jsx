@@ -43,13 +43,11 @@ const MyOderPage = () => {
         (data) => {
             const { id, token, orderItems } = data
             const res = OrderServices.cancelOrder(id, token, orderItems)
-            console.log('res', data)
             return res
         }
     )
 
     const handleCancelOrder = (order) => {
-        console.log('order', order)
         mutation.mutate({ id: order._id, token: state?.token, orderItems: order?.orderItems }, {
             onSuccess: () => {
                 queryOrder.refetch()
@@ -183,8 +181,8 @@ const MyOderPage = () => {
                                                     border: "1px solid rgb(11,116,229)",
                                                     borderRadius: "4px",
                                                 }}
-                                                textButton={"Hủy đơn hàng"}
-                                                styleTextButton={{
+                                                textbutton={"Hủy đơn hàng"}
+                                                styletextbutton={{
                                                     color: "rgb(11,116,229)",
                                                     fontSize: "14px",
                                                 }}
@@ -197,8 +195,8 @@ const MyOderPage = () => {
                                                     border: "1px solid rgb(11,116,229)",
                                                     borderRadius: "4px",
                                                 }}
-                                                textButton={"Xem chi tiết"}
-                                                styleTextButton={{
+                                                textbutton={"Xem chi tiết"}
+                                                styletextbutton={{
                                                     color: "rgb(11,116,229)",
                                                     fontSize: "14px",
                                                 }}
