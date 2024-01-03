@@ -1,14 +1,19 @@
 import { Button, Col, Form, Input, Layout, Row, Typography } from "antd";
 
 import React from "react";
+import { sendContact } from "./api";
+import { useDispatch } from "react-redux";
 
 const { Content } = Layout;
 const { Title } = Typography;
 
 const Contact = () => {
+  const dispatch = useDispatch();
+
   const onFinish = (values) => {
     console.log("Form values:", values);
-    // You can handle form submission logic here
+
+    dispatch(sendContact(values));
   };
 
   return (
@@ -20,7 +25,7 @@ const Contact = () => {
             <Form name="contact-form" onFinish={onFinish} layout="vertical">
               <Form.Item
                 label="Họ và Tên"
-                name="fullName"
+                name="name"
                 rules={[
                   {
                     required: true,
@@ -49,8 +54,21 @@ const Contact = () => {
               </Form.Item>
 
               <Form.Item
+                label="Số Điện Thoại"
+                name="phoneNumber"
+                rules={[
+                  {
+                    required: true,
+                    message: "Vui lòng nhập số điện thoại!",
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+
+              <Form.Item
                 label="Nội dung"
-                name="message"
+                name="content"
                 rules={[
                   {
                     required: true,

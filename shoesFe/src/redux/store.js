@@ -10,6 +10,7 @@ import {
 } from "redux-persist";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
+import contactReducer from "./slice/ContactSlice";
 import newsReducer from "./slice/NewsSlice";
 import orderReducer from "./slice/OderSlice";
 import productReducer from "./slice/ProductSlice";
@@ -27,6 +28,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   product: productReducer,
   news: newsReducer,
+  contact: contactReducer,
   services: servicesReducer,
   user: userReducer,
   order: orderReducer,

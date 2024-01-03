@@ -99,7 +99,7 @@ const HeaderComponent = ({ isHiddenMenu = false }) => {
   const order = useSelector((state) => state.order);
   const [pending, setPending] = useState(false);
   const handleNavigateLogin = () => {
-    navigate("sign-in");
+    navigate("/sign-in");
   };
   const handleLogout = async () => {
     setPending(true);
