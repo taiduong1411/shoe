@@ -1,5 +1,6 @@
 import AboutUsPage from "../pages/AboutUspage/AboutUsPage";
 import AdminPage from "../pages/AdminPage/AdminPage";
+import Contact from "../pages/Contact/Contact";
 import DetailsOrderPage from "../pages/DetailsOrderPage/DetailsOrderPage";
 import HomePage from "../pages/HomePage/HomePage";
 import MyOderPage from "../pages/MyOderPage/MyOderPage";
@@ -11,10 +12,12 @@ import PaymentPage from "../pages/PaymentPage/PaymentPage";
 import ProductDetailsPage from "../pages/ProductDetailsPage/ProductDetailsPage";
 import ProductsPage from "../pages/ProductsPage/ProductsPage";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
+import Services from "../pages/Services/Services";
 import ShoppingGuidePage from "../pages/ShoppingGuidePage/ShoppingGuidePage";
 import SignInPage from "../pages/SignInPage/SignInPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import TypeProductPage from "../pages/TypeProductPage/TypeProductPage";
+
 export const routes = [
   {
     path: "/",
@@ -95,6 +98,16 @@ export const routes = [
   {
     path: "/Shopping-Guide",
     page: ShoppingGuidePage,
+    isShowHeader: true,
+  },
+  {
+    path: "/services",
+    page: Services,
+    isShowHeader: true,
+  },
+  {
+    path: "/contact",
+    page: Contact,
     isShowHeader: true,
   },
   {
