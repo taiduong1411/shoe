@@ -11,7 +11,7 @@ const app = express();
 app.set("view engine", "ejs");
 const port = process.env.PORT || 9000;
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: "10mb" }));
 app.use(cookieParser());
 
 routes(app);

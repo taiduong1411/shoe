@@ -8,6 +8,8 @@ const productSchema = new mongoose.Schema(
     countInStock: { type: Number, required: true },
     // rating: { type: Number, required: true },
     description: { type: String },
+    color: { type: String },
+    size: { type: Number },
   },
   {
     timestamps: true,

@@ -2,8 +2,17 @@ const Product = require("../models/ProductModel");
 const bcrypt = require("bcrypt");
 const createProduct = (newProduct) => {
   return new Promise(async (resolve, reject) => {
-    const { name, image, type, price, countInStock, rating, description } =
-      newProduct;
+    const {
+      name,
+      image,
+      type,
+      price,
+      countInStock,
+      rating,
+      description,
+      size,
+      color,
+    } = newProduct;
 
     try {
       const checkProduct = await Product.findOne({
@@ -24,6 +33,8 @@ const createProduct = (newProduct) => {
         countInStock: Number(countInStock),
         // rating,
         description,
+        size,
+        color,
       });
 
       if (newProduct) {
