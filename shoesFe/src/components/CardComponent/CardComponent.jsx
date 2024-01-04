@@ -1,9 +1,12 @@
 import { Col, Row } from "antd";
 import { StyleNameProduct, WrapperCardStyle, WrapperPriceText } from "./style";
+import {ShoppingOutlined} from '@ant-design/icons'
 
 import React from "react";
 import { convertPrice } from "../../utils";
 import { useNavigate } from "react-router-dom";
+
+
 
 const CardComponent = ({ image, name, price, id }) => {
   const navigate = useNavigate();
@@ -11,6 +14,12 @@ const CardComponent = ({ image, name, price, id }) => {
   const handleDetailsProduct = (id) => {
     navigate(`/product-details/${id}`);
   };
+
+  const handleShoppingProduct = (id) => {
+    navigate(`/product-details/${id}`);
+  };
+
+
   return (
     <Row style={{ padding: "10px", display: "block" }}>
       <Col span={3}></Col>
@@ -33,7 +42,10 @@ const CardComponent = ({ image, name, price, id }) => {
                         </span>
 
                     </WrapperReportText> */}
+                    <div style={{display:'flex',justifyContent:'space-between'}}>
           <WrapperPriceText>{convertPrice(price)}</WrapperPriceText>
+          <ShoppingOutlined style={{fontSize:'25px',color:'red'}}  onClick={() => handleShoppingProduct(id)} />
+          </div>
         </WrapperCardStyle>
       </Col>
       <Col span={3}></Col>

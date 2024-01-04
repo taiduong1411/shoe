@@ -121,6 +121,7 @@ const ProductDetailsComponent = ({ idProduct }) => {
       }
     }
   };
+ 
   return (
     <>
       <LoadingComponent isPending={isPending}>
@@ -337,6 +338,7 @@ const ProductDetailsComponent = ({ idProduct }) => {
                     border: "1px solid ",
                     BorderRadius: "4px",
                   }}
+                  onClick={handleAddOrderProduct}
                   textbutton={"THÊM VÀO GIỎ HÀNG"}
                   styletextbutton={{ color: "#fff", fontSize: "15px" }}
                 ></ButtonComponent>
@@ -381,7 +383,7 @@ const ProductDetailsComponent = ({ idProduct }) => {
               <p style={{ textAlign: "center" }}>
                 <img
                   style={{ width: "600px", height: "auto" }}
-                  src={imageSmall3}
+                  src={productDetails?.image}
                   alt="logo"
                 />
               </p>

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const TitleText = styled.h1`
 font-size: 24px;
-font-weight: 600;
+font-weight: 700;
 text-align: center;
 padding: 15px;
 margin-top: 0;

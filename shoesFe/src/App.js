@@ -45,10 +45,17 @@ function App() {
     // Do something before request is sent
     const currentTime = new Date()
     const { decoded } = handleDecoded()
+    let storageRefreshToken = localStorage.getItem('refresh_token')
+    const refreshToken = JSON.parse(storageRefreshToken)
+    const decodedRefreshToken = jwtDecode(refreshToken)
     if (decoded?.exp < currentTime.getTime() / 1000) {
-      const data = await UserServices.refreshToken()
+      if(decodedRefreshToken?.exp > currentTime.getTime() / 1000){
+      const data = await UserServices.refreshToken(refreshToken)
       config.headers['token'] = `Bearer ${data?.access_token}`
+    }else{
+      dispatch(resetUser())
     }
+  }
     return config;
   }, (err) => {
     return Promise.reject(err);

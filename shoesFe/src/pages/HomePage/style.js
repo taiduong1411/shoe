@@ -21,7 +21,7 @@ export const WrapperProducts = styled.div`
 `
 export const TitleTextNew = styled.h1`
 font-size: 24px;
-font-weight: 600;
+font-weight: 700;
 text-align: center;
 text-transform: uppercase;
 text-decoration: underline;

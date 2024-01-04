@@ -15,7 +15,7 @@ export const createOrder = async (data, access_token) => {
 
     
 
-    return res
+    return res.data
 }
 
 export const getOrderbyUserId = async (id, access_token) => {
@@ -25,7 +25,7 @@ export const getOrderbyUserId = async (id, access_token) => {
         },
     })
 
-    return res
+    return res.data
 }
 
 export const getDetailsOrder = async (id, access_token) => {
@@ -35,7 +35,7 @@ export const getDetailsOrder = async (id, access_token) => {
         },
     })
 
-    return res
+    return res.data
 }
 
 
@@ -45,5 +45,15 @@ export const cancelOrder = async (id, access_token, orderItems) => {
             token: `Bearer ${access_token}`,
         },
     })
-    return res
+    return res.data
+}
+
+
+export const getAllOrder = async (access_token) => {
+    const res = await axiosJWT.get(`${process.env.REACT_APP_API_URL}/order/get-all-orders`, {
+        headers: {
+            token: `Bearer ${access_token}`,
+        },
+    })
+    return res.data
 }

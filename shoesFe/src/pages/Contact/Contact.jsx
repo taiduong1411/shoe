@@ -89,14 +89,13 @@ const Contact = () => {
           <Col span={12}>
             <Title level={3}>Thông Tin Liên Hệ</Title>
             <p>
-              <strong>Địa Chỉ:</strong> 123 Đường Sách Hạnh Phúc, Quận 1, Thành
-              phố Hồ Chí Minh
+              <strong>Địa Chỉ:</strong>02 Trường Sa,Quận Bình Thạnh, Thành Phố Hồ Chí Minh
             </p>
             <p>
-              <strong>Điện Thoại:</strong> 0123 456 789
+              <strong>Điện Thoại:</strong> 0353955259
             </p>
             <p>
-              <strong>Email:</strong> info@example.com
+              <strong>Email:</strong> ShopFP@gmail.com
             </p>
           </Col>
         </Row>

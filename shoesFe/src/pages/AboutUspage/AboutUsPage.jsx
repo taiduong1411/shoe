@@ -1,5 +1,5 @@
 import React from 'react'
-import imageSmall3 from "../../assets/Nam/giay-adidas-adizero-sl-nam-den-den-04.jpg"
+import imageSmall3 from "../../assets/size/sneaker.jpg"
 import { WrapperTitle } from './style'
 
 const AboutUsPage = () => {
