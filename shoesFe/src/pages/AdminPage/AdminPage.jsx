@@ -13,6 +13,8 @@ import HeaderComponent from "../../components/HeaderComponent/HeaderComponent";
 import { Menu } from "antd";
 import { getItem } from "../../utils";
 import AdminOrder from "../../components/AdminOrder/AdminOrder";
+import Report from "../../components/AdminOrder/Report";
+import Inventory from "../../components/AdminOrder/Inventory";
 
 const AdminPage = () => {
   const items = [
@@ -20,8 +22,9 @@ const AdminPage = () => {
     getItem("Sản Phẩm", "product", <AppstoreOutlined />),
     getItem("Liên hệ", "contact", <ContactsOutlined />),
     getItem("Đơn hàng", "order", <ShoppingOutlined />),
+    getItem("Doanh thu", "report", <ShoppingOutlined />),
+    getItem("Tồn kho", "inventory", <ShoppingOutlined />),
   ];
-
   const [keySelected, setKeySelected] = useState("");
 
   const renderPage = (key) => {
@@ -32,10 +35,14 @@ const AdminPage = () => {
         return <AdminProduct />;
       case "contact":
         return <AdminContact />;
-        case "order":
+      case "order":
         return <AdminOrder />;
+      case "report":
+        return <Report />;
+      case "inventory":
+        return <Inventory />;
       default:
-        return <></>;
+        return <AdminUser />;
     }
   };
 

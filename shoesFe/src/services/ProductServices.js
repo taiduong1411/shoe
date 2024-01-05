@@ -75,3 +75,10 @@ export const getAllTypeProduct = async () => {
   );
   return res;
 };
+
+export const inventory = async () => {
+  const res = await axios.get(
+    `${process.env.REACT_APP_API_URL}/product/products`
+  );
+  return res;
+};
