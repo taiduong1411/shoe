@@ -1,4 +1,6 @@
 const OrderServices = require("../services/OrderServices");
+const Order = require("../models/OrderProduct");
+
 const createOrder = async (req, res) => {
   try {
     const {
@@ -94,10 +96,9 @@ const cancelOrderDetails = async (req, res) => {
   }
 };
 
-
 const getAllOrder = async (req, res) => {
   try {
-    const data = await OrderServices.getAllOrder()
+    const data = await OrderServices.getAllOrder();
     return res.status(200).json(data);
   } catch (e) {
     return res.status(400).json({
@@ -106,10 +107,50 @@ const getAllOrder = async (req, res) => {
   }
 };
 
+const report = async (req, res) => {
+  try {
+    const result = await Order.aggregate([
+      {
+        $group: {
+          _id: {
+            date: {
+              $dateToString: {
+                format: "%Y-%m-%d",
+                date: "$createdAt",
+              },
+            },
+          },
+          totalRevenue: { $sum: "$totalPrice" },
+          totalOrders: { $sum: 1 },
+        },
+      },
+      {
+        $project: {
+          _id: 1,
+          date: "$_id.date",
+          totalRevenue: 1,
+          totalOrders: 1,
+        },
+      },
+      {
+        $sort: {
+          date: 1,
+        },
+      },
+    ]);
+
+    res.json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
 module.exports = {
   createOrder,
   getAllOrderDetails,
   getDetailsOrder,
   cancelOrderDetails,
-  getAllOrder
+  getAllOrder,
+  report,
 };

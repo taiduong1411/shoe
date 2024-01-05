@@ -1,3 +1,4 @@
+const Product = require("../models/ProductModel");
 const ProductServices = require("../services/ProductServices");
 
 const createProduct = async (req, res) => {
@@ -148,7 +149,26 @@ const getNewestProduct = async (req, res) => {
     });
   }
 };
+const getPr = async (req, res) => {
+  try {
+    const products = await Product.find();
 
+    const productsWithStock = products.map((product) => {
+      return {
+        _id: product._id,
+        name: product.name,
+        type: product.type,
+        price: product.price,
+        countInStock: product.countInStock,
+      };
+    });
+
+    res.json(productsWithStock);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Lỗi server" });
+  }
+};
 module.exports = {
   createProduct,
   updateProduct,
@@ -158,4 +178,5 @@ module.exports = {
   getAllProduct,
   getAllType,
   getNewestProduct,
+  getPr,
 };
