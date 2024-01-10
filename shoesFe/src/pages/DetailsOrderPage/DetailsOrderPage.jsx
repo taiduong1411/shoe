@@ -31,6 +31,8 @@ const DetailsOrderPage = () => {
     );
 
     const { isPending, data } = queryOrder;
+    
+
 
 
     // const priceMemo = useMemo(() => {
