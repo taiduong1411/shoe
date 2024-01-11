@@ -144,7 +144,7 @@ const AdminOrder = () => {
     });
   return (
     <div>
-        <WrapperHeader>Quản lý đơn hàng</WrapperHeader>
+        <WrapperHeader>Quản lý thanh toán</WrapperHeader>
         <div style={{width:'200px',height:'200px'}}>
         <PieChartComponent data ={orders?.data} />
         </div>

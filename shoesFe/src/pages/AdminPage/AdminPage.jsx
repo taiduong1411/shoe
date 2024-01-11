@@ -21,7 +21,7 @@ const AdminPage = () => {
     getItem("Người Dùng", "user", <UserOutlined />),
     getItem("Sản Phẩm", "product", <AppstoreOutlined />),
     getItem("Liên hệ", "contact", <ContactsOutlined />),
-    getItem("Đơn hàng", "order", <ShoppingOutlined />),
+    getItem("Thanh toán", "order", <ShoppingOutlined />),
     getItem("Doanh thu", "report", <ShoppingOutlined />),
     getItem("Tồn kho", "inventory", <ShoppingOutlined />),
   ];

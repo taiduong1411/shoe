@@ -13,4 +13,6 @@ router.get("/get-all-type", ProductController.getAllType);
 router.get("/get-newest", ProductController.getNewestProduct);
 router.get("/products", ProductController.getPr);
 
+
+
 module.exports = router;

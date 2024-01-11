@@ -217,7 +217,8 @@ const ProductDetailsComponent = ({ idProduct }) => {
                   <button>39</button>
                   <button>40</button>
                   <button>41</button>
-                  <button>42</button> <button>43</button>
+                  <button>42</button> 
+                  <button>43</button>
                 </ProductSize>
               </div>
               <div>
