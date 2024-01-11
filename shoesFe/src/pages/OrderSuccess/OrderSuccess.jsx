@@ -12,8 +12,7 @@ import { convertPrice } from '../../utils';
 const OrderSuccess = () => {
     const location = useLocation()
     const { state } = location
-
-
+    console.log('state',{state})
     return (
         <div style={{ background: '#f5f5f5', width: '100%', height: '100vh' }}>
             <LoadingComponent isPending={false}>
@@ -27,7 +26,6 @@ const OrderSuccess = () => {
                                     <WrapperValue>
                                         <span style={{ color: '#ea8500', fontWeight: 'bold' }}>{orderContant.delivery[state?.delivery]}</span>Giao hàng tiết kiệm
                                     </WrapperValue>
-
                                 </div>
                             </WrapperInfo>
                             <WrapperInfo>

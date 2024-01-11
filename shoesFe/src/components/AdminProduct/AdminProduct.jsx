@@ -33,6 +33,7 @@ const AdminProduct = () => {
         countInStock: '',
         color: '',
         size: '',
+        brand:'',
     })
     const [stateProduct, setStateProduct] = useState(inittial())
     const [stateProductDetails, setStateProductDetails] = useState(inittial())
@@ -47,14 +48,14 @@ const AdminProduct = () => {
                 description,
                 image,
                 type,
-                countInStock ,color,size} = data
+                countInStock ,color,size,brand} = data
             const res = ProductServices.createProduct({
                 name,
                 price,
                 description,
                 image,
                 type,
-                countInStock,color,size
+                countInStock,color,size,brand
             })
             return res
         }
@@ -128,6 +129,7 @@ const AdminProduct = () => {
                 countInStock: res?.data?.countInStock,
                 color: res?.data?.color,
                 size: res?.data?.size,
+                brand: res?.data?.brand,
             })
         }
         setIsPendingUpdate(false)
@@ -359,6 +361,7 @@ const AdminProduct = () => {
             countInStock: '',
             color: '',
             size: '',
+            brand:'',
         })
         form.resetFields()
     };
@@ -373,6 +376,7 @@ const AdminProduct = () => {
           countInStock: "",
           color: "",
           size: "",
+          brand:"",
         });
         form.resetFields()
     };
@@ -572,6 +576,17 @@ const AdminProduct = () => {
                   name="size"
                 />
               </Form.Item>
+              <Form.Item
+                label="Brand"
+                name="brand"
+                rules={[{ required: true, message: "Please input your brand!" }]}
+              >
+                <InputComponent
+                  value={stateProduct.brand}
+                  onChange={handleOnchange}
+                  name="brand"
+                />
+              </Form.Item>
 
               <Form.Item
                 label="Image"
@@ -715,6 +730,19 @@ const AdminProduct = () => {
                   value={stateProductDetails.size}
                   onChange={handleOnchangeDetails}
                   name="size"
+                />
+              </Form.Item>
+              <Form.Item
+                label="Brand"
+                name="brand"
+                rules={[
+                  { required: true, message: "Please input your brand!" },
+                ]}
+              >
+                <InputComponent
+                  value={stateProductDetails.brand}
+                  onChange={handleOnchangeDetails}
+                  name="brand"
                 />
               </Form.Item>
 

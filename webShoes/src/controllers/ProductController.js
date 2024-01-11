@@ -13,6 +13,7 @@ const createProduct = async (req, res) => {
       description,
       color,
       size,
+      brand,
     } = req.body;
 
     if (
@@ -23,7 +24,8 @@ const createProduct = async (req, res) => {
       !countInStock ||
       !description ||
       !color ||
-      !size
+      !size ||
+      !brand
     ) {
       return res.status(422).json({
         status: "ERR",

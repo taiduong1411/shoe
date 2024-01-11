@@ -39,6 +39,7 @@ const Inventory = () => {
     countInStock: "",
     color: "",
     size: "",
+    brand:"",
   });
   const [stateProduct, setStateProduct] = useState(inittial());
   const [stateProductDetails, setStateProductDetails] = useState(inittial());
@@ -46,7 +47,7 @@ const Inventory = () => {
   const [form] = Form.useForm();
 
   const mutation = useMutationHooks((data) => {
-    const { name, price, description, image, type, countInStock, color, size } =
+    const { name, price, description, image, type, countInStock, color, size,brand } =
       data;
     const res = ProductServices.createProduct({
       name,
@@ -57,6 +58,7 @@ const Inventory = () => {
       countInStock,
       color,
       size,
+      brand,
     });
     return res;
   });
@@ -119,6 +121,7 @@ const Inventory = () => {
         countInStock: res?.data?.countInStock,
         color: res?.data?.color,
         size: res?.data?.size,
+        brand: res?.data?.brand,
       });
     }
     setIsPendingUpdate(false);
@@ -351,6 +354,7 @@ const Inventory = () => {
       countInStock: "",
       color: "",
       size: "",
+      brand:"",
     });
     form.resetFields();
   };
@@ -365,6 +369,7 @@ const Inventory = () => {
       countInStock: "",
       color: "",
       size: "",
+      brand:"",
     });
     form.resetFields();
   };

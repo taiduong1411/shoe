@@ -12,6 +12,7 @@ const createProduct = (newProduct) => {
       description,
       size,
       color,
+      brand,
     } = newProduct;
 
     try {
@@ -35,6 +36,7 @@ const createProduct = (newProduct) => {
         description,
         size,
         color,
+        brand,
       });
 
       if (newProduct) {

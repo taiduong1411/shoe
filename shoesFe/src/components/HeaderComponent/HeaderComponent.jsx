@@ -206,7 +206,7 @@ const HeaderComponent = ({ isHiddenMenu = false }) => {
                     </>
                   ) : (
                     <div
-                      style={{ cursor: "pointer" }}
+                      style={{ cursor: "pointer" ,display:"contents"}}
                       onClick={handleNavigateLogin}
                     >
                       <WapperTextContactHeader>

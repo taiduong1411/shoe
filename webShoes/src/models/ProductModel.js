@@ -10,6 +10,7 @@ const productSchema = new mongoose.Schema(
     description: { type: String },
     color: { type: String },
     size: { type: Number },
+    brand: { type: String },
   },
   {
     timestamps: true,

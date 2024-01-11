@@ -113,6 +113,7 @@ const ProductDetailsComponent = ({ idProduct }) => {
               price: productDetails?.price,
               product: productDetails?._id,
               countInStock: productDetails?.countInStock,
+              brand: productDetails?.brand,
             },
           })
         );
@@ -138,7 +139,7 @@ const ProductDetailsComponent = ({ idProduct }) => {
                 alt="image product"
                 preview={false}
               />
-              <Row
+              {/* <Row
                 style={{ paddingTop: "10px", justifyContent: "space-between" }}
               >
                 <WrapperStyleColSmall span={6}>
@@ -169,7 +170,7 @@ const ProductDetailsComponent = ({ idProduct }) => {
                     preview={false}
                   />
                 </WrapperStyleColSmall>
-              </Row>
+              </Row> */}
             </Col>
             <Col span={14} style={{ paddingLeft: "10px" }}>
               <WrapperStyleNameProduct>
@@ -198,6 +199,7 @@ const ProductDetailsComponent = ({ idProduct }) => {
                                     <span className="change-address">Đổi địa chỉ</span>
                                 </WrapperAddressProduct> */}
               </div>
+              
               <div></div>
               <div style={{ display: "flex", marginTop: "20px" }}>
                 <span
@@ -217,6 +219,9 @@ const ProductDetailsComponent = ({ idProduct }) => {
                   <button>41</button>
                   <button>42</button> <button>43</button>
                 </ProductSize>
+              </div>
+              <div>
+              <span>Thương hiệu: <span style={{fontWeight:'500'}}>{productDetails?.brand}</span></span>
               </div>
               <div
                 style={{

@@ -98,9 +98,10 @@ const NavbarComponents = () => {
           { value: "giày nam", label: "GIÀY NAM" },
           { value: "giày nữ", label: "GIÀY NỮ" },
           { value: "giày trẻ em", label: "GIÀY TRẺ EM" },
+          { value: "phụ kiện giày", label: "PHỤ KIỆN GIÀY" },
         ])}
       </WrapperContent>
-      <WrapperContent>
+      {/* <WrapperContent>
         {renderContent("checkbox", [
           { value: "a", label: "7" },
           { value: "b", label: "8" },
@@ -120,9 +121,9 @@ const NavbarComponents = () => {
           { value: "x", label: "44" },
           { value: "z", label: "45" },
         ])}
-      </WrapperContent>
-      {/* <WrapperContent>{renderContent("start", [3, 4, 5])}</WrapperContent>
-      <WrapperContent>
+      </WrapperContent> */}
+      {/* <WrapperContent>{renderContent("start", [3, 4, 5])}</WrapperContent> */}
+      {/* <WrapperContent>
         {renderContent("price", [
           "Dưới 500.000đ",
           "Trên 500.000đ",

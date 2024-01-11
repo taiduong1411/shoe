@@ -21,11 +21,9 @@ import LoadingComponent from "../../components/LoadingComponent/LoadingComponent
 import * as message from "../../components/Message/Message";
 import * as OrderServices from "../../services/OrderServices";
 import * as PaymentServices from "../../services/PaymentServices";
-
 import { updateUser } from "../../redux/slice/UserSlice";
 import { useNavigate } from "react-router-dom";
 import {
-  BraintreePayPalButtons,
   PayPalButtons,
   PayPalScriptProvider,
 } from "@paypal/react-paypal-js";
@@ -33,7 +31,7 @@ import {
 const PaymentPage = () => {
   const order = useSelector((state) => state.order);
   const user = useSelector((state) => state.user);
-  const [listChecked, setListChecked] = useState([]);
+  // const [listChecked, setListChecked] = useState([]);
   const [sdkReady, setSdkReady] = useState(false);
   const [isOpenModalUpdateInfo, setIsOpenModalUpdateInfo] = useState(false);
   const [delivery, setDelivery] = useState("fast");

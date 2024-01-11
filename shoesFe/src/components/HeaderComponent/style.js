@@ -67,7 +67,7 @@ export const MenuUlHeaderDropDown = styled.ul`
   li{
     a{
       text-transform: capitalize;
-      color: black;
+      color: #000;
       font-weight: 400;
       padding:5px 15px;
     }
@@ -87,5 +87,6 @@ cursor: pointer;
 &:hover{
   background: #F4F4F4;
   color:#000;
+ 
 }
 `
