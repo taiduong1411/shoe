@@ -28,7 +28,7 @@ const MyOderPage = () => {
             state?.token
         );
 
-        return res.data;
+        return res;
     };
 
 
@@ -42,7 +42,7 @@ const MyOderPage = () => {
     const mutation = useMutationHooks(
         (data) => {
             const { id, token, orderItems } = data
-            const res = OrderServices.cancelOrder(id, token, orderItems)
+            const res = OrderServices.cancelOrder(id, token, orderItems);
             return res
         }
     )
@@ -70,11 +70,10 @@ const MyOderPage = () => {
 
 
 
-
     const renderProduct = (data) => {
-        return data?.map((order) => {
+        return data?.map((order, index) => {
             return (
-                <WrapperHeaderItem>
+                <WrapperHeaderItem key={index}>
                     <img
                         src={order?.image}
                         alt="order"
@@ -96,6 +95,9 @@ const MyOderPage = () => {
                         }}
                     >
                         {order?.name}
+                        <div>
+                            Size: {order?.size}
+                        </div>
                     </div>
                     <span
                         style={{ fontSize: "13px", color: "#242424", marginLeft: "auto" }}
@@ -108,7 +110,8 @@ const MyOderPage = () => {
     };
 
     const handleDetailsOrder = (id) => {
-        navigate(`/details-order/${id}`, {
+        // console.log(_id._id);
+        navigate(`/details-order/${id._id}`, {
             state: {
                 token: state?.token
             }

@@ -8,7 +8,7 @@ const createProduct = (newProduct) => {
       type,
       price,
       countInStock,
-      rating,
+      // rating,
       description,
       size,
       color,

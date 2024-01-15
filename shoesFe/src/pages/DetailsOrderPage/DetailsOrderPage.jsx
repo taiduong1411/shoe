@@ -21,8 +21,7 @@ const DetailsOrderPage = () => {
             id,
             state?.token
         );
-
-        return res.data;
+        return res;
     };
 
 
@@ -31,7 +30,7 @@ const DetailsOrderPage = () => {
     );
 
     const { isPending, data } = queryOrder;
-    
+
 
 
 
@@ -98,7 +97,7 @@ const DetailsOrderPage = () => {
                                             whiteSpace: 'nowrap',
                                             marginLeft: '10px',
                                             height: '70px',
-                                        }}>{order?.name}</div>
+                                        }}>{order?.name} <strong>size: {order?.size}</strong></div>
                                     </WrapperNameProduct>
                                     <WrapperItem>{convertPrice(order?.price)}</WrapperItem>
                                     <WrapperItem>{order?.amount}</WrapperItem>

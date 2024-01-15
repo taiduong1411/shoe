@@ -14,8 +14,8 @@ const createProduct = async (req, res) => {
       color,
       size,
       brand,
-    } = req.body;
-
+    } = req.body.allData;
+    // console.log(req.body.allData);
     if (
       !name ||
       !image ||
@@ -27,14 +27,16 @@ const createProduct = async (req, res) => {
       !size ||
       !brand
     ) {
+      // console.log('thieu du lieu');
       return res.status(422).json({
         status: "ERR",
         message: "The input is required",
       });
     }
-    const response = await ProductServices.createProduct(req.body);
+    const response = await ProductServices.createProduct(req.body.allData);
     return res.status(200).json(response);
   } catch (e) {
+    // console.log(e);
     return res.status(400).json({
       message: e,
     });

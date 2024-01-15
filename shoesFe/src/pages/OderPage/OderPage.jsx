@@ -26,6 +26,7 @@ import StepComponent from '../../components/StepComponent/StepComponent';
 const OderPage = () => {
 
     const order = useSelector((state) => state.order)
+    // console.log(order);
     const user = useSelector((state) => state.user)
     const [listChecked, setListChecked] = useState([])
     const [isOpenModalUpdateInfo, setIsOpenModalUpdateInfo] = useState(false)
@@ -222,6 +223,7 @@ const OderPage = () => {
                                 <span>Tất cả ({order?.orderItems?.length} sản phẩm )</span>
                             </span>
                             <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                <span>Size</span>
                                 <span>Đơn giá</span>
                                 <span>Số lượng </span>
                                 <span>Thành tiền</span>
@@ -244,6 +246,9 @@ const OderPage = () => {
                                                 }}
                                             >{order?.name}</div>
                                         </div>
+                                        <div style={{ marginRight: "20px" }}>
+                                            {order?.size}
+                                        </div>
                                         <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                                             <span>
                                                 <span style={{ fontSize: '13px', color: '#242424' }}>
@@ -258,7 +263,7 @@ const OderPage = () => {
                                                 </button>
                                                 <WrapperInputNumber defaultValue={order?.amount} value={order?.amount} size="small" min={1} max={order?.countInStock} />
                                                 <button style={{ border: 'none', background: 'transparent', cursor: 'pointer' }} onClick={() => handleChangeCount('increase', order?.product,
-                                                    order?.amount === order?.countInStock,order?.amount === 1)}>
+                                                    order?.amount === order?.countInStock, order?.amount === 1)}>
                                                     <PlusOutlined style={{ color: '#000', fontSize: '10px' }} />
                                                 </button>
                                             </WrapperCountOrder>

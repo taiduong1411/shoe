@@ -102,6 +102,8 @@ const HeaderComponent = ({ isHiddenMenu = false }) => {
     navigate("/sign-in");
   };
   const handleLogout = async () => {
+    localStorage.removeItem('persist:root')
+    localStorage.removeItem('access_token')
     setPending(true);
     await UserServices.logoutUser();
     dispatch(resetUser());
@@ -206,7 +208,7 @@ const HeaderComponent = ({ isHiddenMenu = false }) => {
                     </>
                   ) : (
                     <div
-                      style={{ cursor: "pointer" ,display:"contents"}}
+                      style={{ cursor: "pointer", display: "contents" }}
                       onClick={handleNavigateLogin}
                     >
                       <WapperTextContactHeader>

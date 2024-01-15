@@ -12,7 +12,9 @@ const createOrder = async (req, res) => {
       address,
       city,
       phone,
+      size
     } = req.body;
+    // console.log(req.body);
     if (
       !paymentMethod ||
       !itemsPrice ||
@@ -32,6 +34,7 @@ const createOrder = async (req, res) => {
     const response = await OrderServices.createOrder(req.body);
     return res.status(200).json(response);
   } catch (e) {
+    console.log(e);
     return res.status(400).json({
       message: e,
     });
@@ -79,6 +82,7 @@ const getDetailsOrder = async (req, res) => {
 const cancelOrderDetails = async (req, res) => {
   try {
     const orderId = req.params.id;
+    // console.log(orderId);
     const data = req.body;
     if (!orderId) {
       return res.status(422).json({

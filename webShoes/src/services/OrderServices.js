@@ -143,7 +143,7 @@ const cancelOrderDetails = (id, data) => {
         const productData = await Product.findOneAndUpdate(
           {
             _id: order.product,
-            selled: { $gte: order.amount },
+            // selled: { $gte: order.amount },
           },
           {
             $inc: {
@@ -153,6 +153,7 @@ const cancelOrderDetails = (id, data) => {
           },
           { new: true }
         );
+        // console.log(productData);
         if (productData) {
           order = await Order.findOneAndDelete(id);
           if (order === null) {
@@ -171,6 +172,7 @@ const cancelOrderDetails = (id, data) => {
       });
       const results = await Promise.all(Promises);
       const newData = results && results.filter((item) => item);
+      // console.log(newData);
       if (newData.length) {
         resolve({
           status: "ERR",
@@ -203,11 +205,11 @@ const getAllOrder = () => {
   });
 };
 
-const reportService = async (req,res) => {
-    const data = await Order.find({
-        createdAt:req.createdAt,
-        
-    })
+const reportService = async (req, res) => {
+  const data = await Order.find({
+    createdAt: req.createdAt,
+
+  })
 };
 
 module.exports = {

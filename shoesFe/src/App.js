@@ -49,13 +49,13 @@ function App() {
     const refreshToken = JSON.parse(storageRefreshToken)
     const decodedRefreshToken = jwtDecode(refreshToken)
     if (decoded?.exp < currentTime.getTime() / 1000) {
-      if(decodedRefreshToken?.exp > currentTime.getTime() / 1000){
-      const data = await UserServices.refreshToken(refreshToken)
-      config.headers['token'] = `Bearer ${data?.access_token}`
-    }else{
-      dispatch(resetUser())
+      if (decodedRefreshToken?.exp > currentTime.getTime() / 1000) {
+        const data = await UserServices.refreshToken(refreshToken)
+        config.headers['token'] = `Bearer ${data?.access_token}`
+      } else {
+        dispatch(resetUser())
+      }
     }
-  }
     return config;
   }, (err) => {
     return Promise.reject(err);

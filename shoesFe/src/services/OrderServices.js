@@ -6,14 +6,14 @@ export const createOrder = async (data, access_token) => {
         headers: {
             token: `Bearer ${access_token}`
         }
-    }) 
+    })
     // axiosJWT.post(`${process.env.REACT_APP_API_URL}/order/create`, data, {
     //     headers: {
     //         token: `Bearer ${access_token}`,
     //     },
     // })
 
-    
+
 
     return res.data
 }
@@ -60,12 +60,12 @@ export const getAllOrder = async (access_token) => {
 
 export const report = async (access_token) => {
     const res = await axiosJWT.get(
-      `${process.env.REACT_APP_API_URL}/order/revenue-by-day`,
-    //   {
-    //     headers: {
-    //       token: `Bearer ${access_token}`,
-    //     },
-    //   }
+        `${process.env.REACT_APP_API_URL}/order/revenue-by-day`,
+        //   {
+        //     headers: {
+        //       token: `Bearer ${access_token}`,
+        //     },
+        //   }
     );
     return res.data
 }

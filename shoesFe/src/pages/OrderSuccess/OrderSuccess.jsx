@@ -8,11 +8,10 @@ import { convertPrice } from '../../utils';
 
 
 
-
 const OrderSuccess = () => {
     const location = useLocation()
     const { state } = location
-    console.log('state',{state})
+    console.log('state', { state })
     return (
         <div style={{ background: '#f5f5f5', width: '100%', height: '100vh' }}>
             <LoadingComponent isPending={false}>

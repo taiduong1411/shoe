@@ -1,7 +1,7 @@
 import * as ProductServices from "../../services/ProductServices";
 import * as message from "../../components/Message/Message";
 
-import { Col, Divider, Image, Row } from "antd";
+import { Col, Divider, Image, Row, Button } from "antd";
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import {
   ProductSize,
@@ -48,6 +48,7 @@ const ProductDetailsComponent = ({ idProduct }) => {
     const id = context?.queryKey && context?.queryKey[1];
     if (id) {
       const res = await ProductServices.getDetailsProduct(id);
+      // console.log(res.data);
       return res.data;
     }
   };
@@ -93,7 +94,17 @@ const ProductDetailsComponent = ({ idProduct }) => {
     enabled: !!idProduct,
   });
 
+  // choose size
+  const [size, setSize] = useState();
+  const [checked, setChecked] = useState(false);
+  const handleChooseSize = (e) => {
+    // console.log(e.currentTarget.value);
+    setSize(e.currentTarget.value);
+    setChecked(true)
+  }
+
   const handleAddOrderProduct = () => {
+    if (!size) return alert('Phai chon Size Giay')
     if (!user?.id) {
       Navigate("/sign-in", { state: location?.pathname });
     } else {
@@ -114,6 +125,7 @@ const ProductDetailsComponent = ({ idProduct }) => {
               product: productDetails?._id,
               countInStock: productDetails?.countInStock,
               brand: productDetails?.brand,
+              size: size
             },
           })
         );
@@ -122,7 +134,7 @@ const ProductDetailsComponent = ({ idProduct }) => {
       }
     }
   };
- 
+
   return (
     <>
       <LoadingComponent isPending={isPending}>
@@ -199,7 +211,7 @@ const ProductDetailsComponent = ({ idProduct }) => {
                                     <span className="change-address">Đổi địa chỉ</span>
                                 </WrapperAddressProduct> */}
               </div>
-              
+
               <div></div>
               <div style={{ display: "flex", marginTop: "20px" }}>
                 <span
@@ -211,18 +223,19 @@ const ProductDetailsComponent = ({ idProduct }) => {
                 >
                   Size giày:
                 </span>
-                <ProductSize>
-                  <button>37</button>
-                  <button>38</button>
-                  <button>39</button>
-                  <button>40</button>
-                  <button>41</button>
-                  <button>42</button> 
-                  <button>43</button>
-                </ProductSize>
+                {(productDetails?.size) && (productDetails?.size).map((size, index) => (
+                  <ProductSize key={index}>
+                    <Button value={size} onClick={handleChooseSize}>{size}</Button>
+                  </ProductSize>
+                ))}
+                {checked ?
+                  <div>size giay cua ban la {size}</div>
+                  :
+                  <div></div>
+                }
               </div>
               <div>
-              <span>Thương hiệu: <span style={{fontWeight:'500'}}>{productDetails?.brand}</span></span>
+                <span>Thương hiệu: <span style={{ fontWeight: '500' }}>{productDetails?.brand}</span></span>
               </div>
               <div
                 style={{

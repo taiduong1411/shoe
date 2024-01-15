@@ -30,6 +30,7 @@ import {
 
 const PaymentPage = () => {
   const order = useSelector((state) => state.order);
+  // console.log(order);
   const user = useSelector((state) => state.user);
   // const [listChecked, setListChecked] = useState([]);
   const [sdkReady, setSdkReady] = useState(false);
@@ -126,9 +127,10 @@ const PaymentPage = () => {
     return res;
   });
 
-  const mutationAddOrder = useMutationHooks((data) => {
+  const mutationAddOrder = useMutationHooks(async (data) => {
     const { token, ...rests } = data;
-    const res = OrderServices.createOrder({ ...rests }, token);
+    const res = await OrderServices.createOrder({ ...rests }, token);
+    // console.log(res);
     return res;
   });
 
@@ -140,7 +142,8 @@ const PaymentPage = () => {
     isError: isErrorAdd,
   } = mutationAddOrder;
   useEffect(() => {
-    if (isSuccessAdd && dataAddOrders?.statusText === "OK") {
+    console.log(dataAddOrders?.status);
+    if (isSuccessAdd && dataAddOrders?.status === "OK") {
       const arrayOrdered = [];
       order?.orderItemsSelected?.forEach((element) => {
         arrayOrdered.push(element.product);
@@ -156,7 +159,7 @@ const PaymentPage = () => {
         },
       });
     } else if (isErrorAdd) {
-      message.error();
+      message.error('loi');
     }
   }, [isSuccessAdd, isErrorAdd]);
 
